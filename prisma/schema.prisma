@@ -12,3 +12,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String
+  password String
+  active   Boolean @default(true)
+  lists    List[]
+}
+
+model List {
+  id           String    @id @default(uuid())
+  name         String    @db.VarChar(255)
+  description  String?   @db.VarChar(255)
+  dateCreated  DateTime  @default(now())
+  dateModified DateTime?
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  tasks        Task[]
+}
+
+model Task {
+  id           String    @id @default(uuid())
+  name         String    @db.VarChar(255)
+  description  String?   @db.VarChar(255)
+  listId       String
+  dateCreated  DateTime  @default(now())
+  dateModified DateTime?
+  dueDate      DateTime?
+  isComplete   Boolean   @default(false)
+  list         List      @relation(fields: [listId], references: [id])
+  subtasks     Subtask[]
+}
+
+model Subtask {
+  id           String    @id @default(uuid())
+  name         String    @db.VarChar(255)
+  description  String?   @db.VarChar(255)
+  dateCreated  DateTime  @default(now())
+  dateModified DateTime?
+  dueDate      DateTime?
+  isComplete   Boolean   @default(false)
+  taskId       String
+  task         Task      @relation(fields: [taskId], references: [id])
+}

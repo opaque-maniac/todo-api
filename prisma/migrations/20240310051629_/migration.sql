@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Subtask" ADD COLUMN     "dateCreated" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "dateModified" TIMESTAMP(3),
+ADD COLUMN     "dueDate" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "Task" ADD COLUMN     "dueDate" TIMESTAMP(3);
