@@ -23,7 +23,7 @@ This project implements a RESTful API for managing to-do lists using Express.js 
 ## Getting Started:
 
 1. Clone the project repository.
-   `git clone https://github.com/opaque-maniac/todo-api.git`
+   - `git clone https://github.com/opaque-maniac/todo-api.git`
 2. Install dependencies using npm install.
    `cd todo-api`
    `npm i`
