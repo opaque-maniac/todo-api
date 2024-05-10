@@ -1,5 +1,7 @@
 # Todo-List Api
 
+![Screenshot of the package.json file for the project. It shows the name, repository, custom scripts and other information about the todo-list API project](/readme_img/api-json.png)
+
 ## Description
 
 This project implements a RESTful API for managing to-do lists using Express.js and Prisma. It allows users to create, read, update, and delete tasks and sub-tasks, providing a structured approach to managing their daily activities.
