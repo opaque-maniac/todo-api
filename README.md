@@ -6,6 +6,10 @@
 
 This project implements a RESTful API for managing to-do lists using Express.js and Prisma. It allows users to create, read, update, and delete tasks and sub-tasks, providing a structured approach to managing their daily activities.
 
+## Why I Built This
+
+I had just learned about API's in express and I thought that working on a simple project like this would give me the practice that I need. I have also learned a lot when working on this project.
+
 ### Key Features:
 
 1. **Task Management**: Users can create new tasks with titles and optional descriptions. They can also retrieve, update (title, description, completion status), and delete existing tasks.
@@ -95,7 +99,8 @@ _Both of the login and register views return a token which is unique to that use
    - The `:listId` is the id of the list which is a unique string.
 3. **PUT /lists/:listId/tasks/:taskId**:
    - Method: **PUT**
-   - Endpoint to edit a task. - Data required is of format: `{ "name": "Test task", "description": "Task description", "dueDate": 12328978743 }`
+   - Endpoint to edit a task.
+   - Data required is of format: `{ "name": "Test task", "description": "Task description", "dueDate": 12328978743 }`
    - The `description` field is **optional**.
    - The `dueDate` field should contain **Date** date.
    - The `:listId` is the id of the list which is a unique string.
@@ -103,6 +108,35 @@ _Both of the login and register views return a token which is unique to that use
 4. **DELETE /lists/:listId/tasks/:taskId**:
    - Method: **DELETE**
    - Endpoint to delete a task.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+
+### Sub-Task Management
+
+1. **GET /lists/:listId/tasks/:taskId/subtasks**:
+   - Method: **GET**
+   - Endpoint to retrieve a list of subtasks for a task.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+2. **POST /lists/:listId/tasks/:taskId/subtasks**:
+   - Method: **POST**
+   - Endpoint to create a subtask for a task.
+   - Data required is of format: `{ "name": "Test subtask", "description": "First subtask", "dueDate": 12328978743 }`
+   - The `description` field is **optional**.
+   - The `dueDate` field should contain **Date** date.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+3. **PUT /lists/:listId/tasks/:taskId/subtasks**:
+   - Method: **PUT**
+   - Endpoint to edit a subtask.
+   - Data required is of format: `{ "name": "Test subtask", "description": "First subtask", "dueDate": 12328978743 }`
+   - The `description` field is **optional**.
+   - The `dueDate` field should contain **Date** date.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+4. **DELETE /lists/:listId/tasks/:taskId/subtasks**:
+   - Method: **DELETE**
+   - Endpoint to delete a subtask.
    - The `:listId` is the id of the list which is a unique string.
    - The `:taskId` is the id of the task.
 
