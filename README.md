@@ -50,6 +50,11 @@ This project implements a RESTful API for managing to-do lists using Express.js 
    - Endpoint to login a user.
    - Data required is of format: `{ "email": "test@example.com", "password": "testexampleuser"}`
 
+**NOTE**:
+_Both of the login and register views return a token which is unique to that user and will be used by all other views to authenticate and identify current user._
+
+![Screenshot of an API client after registering a test user to the database API. The JSON data send to the user is the email, name and password.](/readme_img/api-reg-call.png)
+
 ### List Management
 
 1. **GET /lists**:
@@ -99,4 +104,4 @@ This project implements a RESTful API for managing to-do lists using Express.js 
    - The `:listId` is the id of the list which is a unique string.
    - The `:taskId` is the id of the task.
 
-**Note**: - _This is a basic example. You can implement user authentication and authorization for a more robust solution._ - _Both of the login and register views return a token which is unique to that user and will be used by all other views to authenticate and identify current user._
+**Note**: - _This is a basic example. You can implement user authentication and authorization for a more robust solution._
