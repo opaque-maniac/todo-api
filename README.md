@@ -27,8 +27,8 @@ This project implements a RESTful API for managing to-do lists using Express.js 
 1. Clone the project repository.
    - `git clone https://github.com/opaque-maniac/todo-api.git`
 2. Install dependencies using npm install.
-   `cd todo-api`
-   `npm i`
+   - `cd todo-api`
+   - `npm i`
 3. Configure your database connection details in prisma/schema.prisma.
    - Change the environment variable for the `DATABASE_URL`
      - _Add an external url for a database server_
