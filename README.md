@@ -33,9 +33,9 @@ This project implements a RESTful API for managing to-do lists using Express.js 
    - Execute the following command:
      - `npx prisma init`
 4. Run database migrations using npx prisma migrate dev.
-   `npx prisma migrate dev`
+   - `npx prisma migrate dev`
 5. Start the server. Use the command:
-   `npm run dev`
+   - `npm run dev`
 
 ## API Endpoints:
 
