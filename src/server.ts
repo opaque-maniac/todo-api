@@ -6,6 +6,7 @@ import {
   denyIfAuthenticated,
 } from "./middleware/authMiddleware";
 import router from "./router";
+import ErrorHandler from "./utils/errorHandler";
 
 const app = express();
 
@@ -23,5 +24,9 @@ app.post("/login", denyIfAuthenticated, login);
 
 // Routes for the api
 app.use("/api", allowIfAuthenticated, router);
+
+app.use((err, req, res, next) => {
+  ErrorHandler(err, req, res, next);
+});
 
 export default app;

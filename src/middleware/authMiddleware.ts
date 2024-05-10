@@ -8,10 +8,8 @@ export const allowIfAuthenticated = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (e) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
+    e.type = "not-auth";
+    next(e);
   }
 };
 
