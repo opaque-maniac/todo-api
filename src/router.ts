@@ -41,7 +41,7 @@ router.delete("/lists/:id", deleteList);
 /**
  * Routes for managing tasks
  */
-router.get("/lists/:listId/tasks", getAllTasks);
+router.get("/lists/tasks", getAllTasks);
 router.post(
   "/lists/:listId/tasks",
   body("name").isString().isLength({ min: 1, max: 255 }),

@@ -14,6 +14,9 @@ export const getAllLists = async (req, res, next) => {
     const itemsPerPage = req.query.itemsPerPage || 10;
 
     const lists = await prisma.list.findMany({
+      where: {
+        userId: req.user.id,
+      },
       skip: (pageNumber - 1) * itemsPerPage,
       take: itemsPerPage,
     });
@@ -101,12 +104,9 @@ export const deleteList = async (req, res, next) => {
 // Get all tasks for a specific list
 export const getAllTasks = async (req, res, next) => {
   try {
-    const { listId } = req.params;
-
     const list = await prisma.list.findFirst({
       where: {
         userId: req.user.id,
-        id: listId,
       },
       include: {
         tasks: true,

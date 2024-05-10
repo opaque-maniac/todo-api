@@ -26,6 +26,7 @@ This project implements a RESTful API for managing to-do lists using Express.js 
    `git clone https://github.com/opaque-maniac/todo-api.git`
 2. Install dependencies using npm install.
    `cd todo-api`
+   `npm i`
 3. Configure your database connection details in prisma/schema.prisma.
    - Change the environment variable for the `DATABASE_URL`
      - _Add an external url for a database server_
@@ -38,13 +39,64 @@ This project implements a RESTful API for managing to-do lists using Express.js 
 
 ## API Endpoints:
 
-1. **POST /register**:
-   - Endpoint to register a new user
-   - Data required is of type:
-     `{
-    "email": "test@example.com",
-    "name": "Example User",
-    "password": "testexampleuser"
-}`
+### Authentication
 
-Note: This is a basic example. You can implement user authentication and authorization for a more robust solution.
+1. **POST /register**:
+   - Method: **POST**
+   - Endpoint to register a new user.
+   - Data required is of format: `{ "email": "test@example.com", "name": "Example User", "password": "testexampleuser" }`
+2. **POST /login**:
+   - Method: **POST**
+   - Endpoint to login a user.
+   - Data required is of format: `{ "email": "test@example.com", "password": "testexampleuser"}`
+
+### List Management
+
+1. **GET /lists**:
+   - Method: **GET**
+   - Endpoint to get a users list.
+   - It uses the token returned from **/login** and **/register** endpoints to authenticate a user.
+2. **POST /lists**:
+   - Method: **POST**
+   - Endpoint to create a new list.
+   - Data required is of format: `{ "name": "Test list", "description": "This is a test list" }`
+   - The `description` field is **optional**.
+   - Each topic has a unique id, for reference, check the **schema.prisma** file.
+3. **PUT /lists/:id**:
+   - Method: **PUT**
+   - Endpoint to edit a list.
+   - Data required is of format: `{ "name": "New Test List", "description": "This a new test list" }`
+   - The `description` field is **optional**.
+   - The `:id` is the id of the list which is a unique string.
+4. **DELETE /lists/:id**:
+   - Method: **DELETE**
+   - Endpoint to delete a list.
+   - The `:id` is the id of the list which is a unique string.
+
+### Task Management
+
+1. **GET /lists/:listId/tasks**:
+   - Method: **GET**
+   - Endpoint to see tasks that belong to a list.
+   - The `:listId` is the id of the list which is a unique string.
+2. **POST /lists/:listId/tasks**:
+   - Method: **POST**
+   - Endpoint to create a task for a specific task
+   - Data required is of format: `{ "name": "Test task", "description": "Task description", "dueDate": 12328978743 }`
+   - The `description` field is **optional**.
+   - The `dueDate` field should contain **Date** date.
+   - The `:listId` is the id of the list which is a unique string.
+3. **PUT /lists/:listId/tasks/:taskId**:
+   - Method: **PUT**
+   - Endpoint to edit a task. - Data required is of format: `{ "name": "Test task", "description": "Task description", "dueDate": 12328978743 }`
+   - The `description` field is **optional**.
+   - The `dueDate` field should contain **Date** date.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+4. **DELETE /lists/:listId/tasks/:taskId**:
+   - Method: **DELETE**
+   - Endpoint to delete a task.
+   - The `:listId` is the id of the list which is a unique string.
+   - The `:taskId` is the id of the task.
+
+**Note**: - _This is a basic example. You can implement user authentication and authorization for a more robust solution._ - _Both of the login and register views return a token which is unique to that user and will be used by all other views to authenticate and identify current user._
